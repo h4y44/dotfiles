@@ -1,0 +1,62 @@
+URxvt.perl-ext-common: default,clipboard
+
+!############Colors
+! special
+*.foreground:   #a8a19f
+*.background:   #1b1918
+*.cursorColor:  #a8a19f
+! black
+*.color0:       #1b1918
+*.color8:       #766e6b
+! red
+*.color1:       #f24d5d
+*.color9:       #f24a5a
+! green
+*.color2:       #5ab738
+*.color10:      #44b730
+! yellow
+*.color3:       #d5911a
+*.color11:      #e48826
+! blue
+*.color4:       #407ee7
+*.color12:      #337fe7
+! magenta
+*.color5:       #705fea
+*.color13:      #5c4bff
+! cyan
+*.color6:       #00ad9c
+*.color14:      #19b6ac
+! white
+*.color7:       #a8a19f
+*.color15:      #f1efee
+
+!###############Behaviors
+*.font: xft:Inconsolata:size=11,xft:Nippon
+!URxvt.letterSpace: -1
+!URxvt.font: xft:Inconsolata-g:size=11,xft:Togoshi Mono
+!URxvt*urlLauncher     : chromium
+! ###Fake transparent
+!URxvt*.transparent: true
+!URxvt*.shading: 10
+! ##True transparent
+!URxvt*depth: 24
+!URxvt*background: rgba:001b/0019/0018/c800
+!URxvt.tintColor : true
+!URxvt.inheritPixmap : true
+!URxvt.inputMethod: ibus
+URxvt.preeditType: OverTheSpot
+URxvt.scrollBar: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyOutput: false 
+URxvt*scrollTtyKeypress: true
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+URxvt.secondaryWheel: 1
+!URxvt*inheritPixmap:    true
+
+!################Cut and paste options
+!URxvt.iso14755: false
+!URxvt.iso14755_52: false
+URxvt*keysym.Shift-Control-V: perl:clipboard:paste
+URxvt*keysym.Shift-Control-C: perl:clipboard:copy
+xterm*termName: xterm-256color
