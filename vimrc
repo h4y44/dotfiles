@@ -3,13 +3,16 @@
 colorscheme moonshine
 set nu
 set mouse=a
+set ttymouse=xterm2
 set hlsearch
 syn on 
-set history=500
+set history=1000
+set smartcase
 "set nocompatible
 imap jj <Esc>
 filetype plugin on
-"set t_Co=256
+set t_Co=256
+set re=1
 nmap <Tab> >>
 nmap <c-o> :e 
 nmap <c-w> :bd<CR>
@@ -27,6 +30,7 @@ set ttimeout
 set ttimeoutlen=50
 set hidden
 
+"PLUGINS
 call plug#begin()
 Plug 'Shougo/neocomplete.vim'
 call plug#end()
@@ -69,6 +73,7 @@ hi TabLine      ctermfg=106         ctermbg=239         cterm=None
 hi TabLineFill  ctermfg=235         ctermbg=240
 hi TabLineSel   ctermfg=233         ctermbg=172         cterm=Bold
 hi VertSplit    ctermfg=238         ctermbg=238         cterm=None
+
 "IGNORE SOME FILE TYPE
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=*.pyc
@@ -79,9 +84,11 @@ augroup vimrc
 	autocmd BufWinEnter,Syntax * syn sync minlines=500 maxlines=500
 augroup END
 
-"LONGLINE MARKER
+"LONGLINE MARKER AND CURSOR LINE
 hi ColorColumn ctermbg=234
-set cc=85
+set cc=95
+hi CursorLine ctermbg=234 cterm=NONE
+set cursorline
 
 "MOVING IN INSERT MODE
 inoremap <c-j> <Down>
@@ -102,20 +109,19 @@ map <c-d> ciw
 map <F3> :bnext<CR>
 map <F2> :bprev<CR>
 "toggle low contrast colorscheme 
-"function! Is_Solarized() 
-"    if g:colors_name == "solarized"
-"        :color 256-jungle
-"    else 
-"        :color solarized
-"    endif
-"endfunction
-"
-"map <space> :call Is_Solarized()<CR>
+function! Is_Solarized() 
+    if g:colors_name == "solarized"
+        :color moonshine
+    else 
+        :color solarized
+    endif
+endfunction
+
+map <space> :call Is_Solarized()<CR>
 set pastetoggle=<F7>
 inoremap <c-f> :FZF<CR>
 "Fix PKGBUILD
 autocmd VimEnter * if @% == 'PKGBUILD' | exe 'setf PKGBUILD' | endif
-set re=1
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1

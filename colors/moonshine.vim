@@ -37,7 +37,6 @@ hi CursorLineNr     ctermbg=NONE ctermfg=214  cterm=NONE
 hi MatchParen       ctermbg=237 ctermfg=75  cterm=NONE
 hi Conceal          ctermbg=NONE ctermfg=245  cterm=NONE
 hi SpecialKey       ctermbg=NONE ctermfg=240  cterm=NONE
-hi ColorColumn      ctermbg=236  ctermfg=NONE cterm=NONE
 hi SignColumn       ctermbg=233  ctermfg=242  cterm=NONE
 hi Folded           ctermbg=NONE ctermfg=88   cterm=NONE
 hi FoldColumn       ctermbg=NONE ctermfg=88   cterm=NONE
@@ -50,6 +49,8 @@ hi VisualNOS        ctermbg=NONE ctermfg=NONE cterm=UNDERLINE
 hi IncSearch        ctermbg=100  ctermfg=235  cterm=NONE
 hi Search           ctermbg=100  ctermfg=235  cterm=NONE
 
+"hi ColorColumn ctermbg=234
+"hi CursorLine ctermbg=234
 "hi StatusLine       ctermbg=236  ctermfg=255  cterm=BOLD
 "hi StatusLineNC     ctermbg=236  ctermfg=233  cterm=NONE
 hi VertSplit        ctermbg=234  ctermfg=234  cterm=NONE
@@ -84,7 +85,6 @@ hi NonText          ctermbg=NONE ctermfg=240  cterm=NONE
 
 hi Cursor           ctermbg=230  ctermfg=NONE cterm=NONE
 hi CursorColumn     ctermbg=236  ctermfg=NONE cterm=NONE
-hi CursorLine       ctermbg=236  ctermfg=NONE cterm=NONE
 
 hi helpleadblank    ctermbg=NONE ctermfg=NONE cterm=NONE
 hi helpnormal       ctermbg=NONE ctermfg=NONE cterm=NONE
