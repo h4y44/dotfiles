@@ -13,15 +13,18 @@ imap jj <Esc>
 filetype plugin on
 set t_Co=256
 set re=1
-nmap <Tab> >>
 nmap <c-o> :e 
 nmap <c-w> :bd<CR>
-
+nmap <c-s> :w <CR>
+imap <c-s> <Esc>:w <CR>
 "TAB & INDENT
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
+"set expandtab
+set noexpandtab
+set listchars=tab:˖\ 
+set list
 set smarttab
 set autoindent
 set cindent
@@ -42,10 +45,10 @@ map <F5> <NOP>
 
 "STATUSLINE OPTIONS
 function! Has_Paste()
-    if &paste 
-        return '[PASTE]'
-    else
-        return ''
+	if &paste 
+		return '[PASTE]'
+	else
+		return ''
 	endif
 endfunction
 
@@ -74,6 +77,10 @@ hi TabLineFill  ctermfg=235         ctermbg=240
 hi TabLineSel   ctermfg=233         ctermbg=172         cterm=Bold
 hi VertSplit    ctermfg=238         ctermbg=238         cterm=None
 
+"SWITCH TAB IN NORMAL MODE 
+nmap <c-h> :bprev<CR>
+nmap <c-l> :bnext<CR>
+
 "IGNORE SOME FILE TYPE
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=*.pyc
@@ -86,15 +93,15 @@ augroup END
 
 "LONGLINE MARKER AND CURSOR LINE
 hi ColorColumn ctermbg=234
-set cc=95
+"set cc=85
 hi CursorLine ctermbg=234 cterm=NONE
 set cursorline
 
 "MOVING IN INSERT MODE
-inoremap <c-j> <Down>
-inoremap <c-k> <Up>
-inoremap <c-l> <Right>
-inoremap <c-h> <Left>
+imap <c-j> <Down>
+imap <c-k> <Up>
+imap <c-l> <Right>
+imap <c-h> <Left>
 
 "CLIPBOARD
 set clipboard=unnamedplus
@@ -102,24 +109,11 @@ map <c-p> "+p
 map <c-c> "+yy
 
 "MOVING IN INSERT
-map <c-q> :q<CR>
-map <F4> :echo strftime('%c')<CR>
-map <c-s> :update<CR> 
 map <c-d> ciw
 map <F3> :bnext<CR>
 map <F2> :bprev<CR>
-"toggle low contrast colorscheme 
-function! Is_Solarized() 
-    if g:colors_name == "solarized"
-        :color moonshine
-    else 
-        :color solarized
-    endif
-endfunction
 
-map <space> :call Is_Solarized()<CR>
 set pastetoggle=<F7>
-inoremap <c-f> :FZF<CR>
 "Fix PKGBUILD
 autocmd VimEnter * if @% == 'PKGBUILD' | exe 'setf PKGBUILD' | endif
 let g:acp_enableAtStartup = 0
