@@ -1,9 +1,11 @@
+"CURSOR SHAPES
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
-"OTHER
-colorscheme moonshine
+"SOME IMPORTANT STUFFS
 set nu
 set mouse=a
-set ttymouse=xterm2
 set hlsearch
 syn on 
 set history=1000
@@ -16,7 +18,9 @@ set re=1
 nmap <c-o> :e 
 nmap <c-w> :bd<CR>
 nmap <c-s> :w <CR>
-imap <c-s> <Esc>:w <CR>
+imap <c-s> <Esc><Esc>:w <CR>
+nmap <c-q> :q<CR>
+nmap <c-f> :tag 
 "TAB & INDENT
 set tabstop=4
 set softtabstop=4
@@ -38,23 +42,16 @@ call plug#begin()
 Plug 'Shougo/neocomplete.vim'
 call plug#end()
 
+colorscheme moonmod
 "TREAT LONG LINE AS NORMAL LINE
 map j gj
 map k gk
 map <F5> <NOP>
 
 "STATUSLINE OPTIONS
-function! Has_Paste()
-	if &paste 
-		return '[PASTE]'
-	else
-		return ''
-	endif
-endfunction
 
 set laststatus=2
 set statusline=%1*[%-n]%5*%m
-set statusline+=%3*%{Has_Paste()} 
 set statusline+=%4*%0.30F
 set statusline+=\ %7*%r%4*%h%w\ %y
 set statusline+=%=
@@ -81,15 +78,13 @@ hi VertSplit    ctermfg=238         ctermbg=238         cterm=None
 nmap <c-h> :bprev<CR>
 nmap <c-l> :bnext<CR>
 
+"SWITCH TAB IN INSERT MODE
+imap <F2> <Esc> :bprev<CR>
+imap <F3> <Esc> :bnext<CR>
+
 "IGNORE SOME FILE TYPE
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=*.pyc
-
-"SPEED UP HIGHLIGHTING
-augroup vimrc
-	autocmd!
-	autocmd BufWinEnter,Syntax * syn sync minlines=500 maxlines=500
-augroup END
 
 "LONGLINE MARKER AND CURSOR LINE
 hi ColorColumn ctermbg=234
@@ -108,14 +103,11 @@ set clipboard=unnamedplus
 map <c-p> "+p
 map <c-c> "+yy
 
-"MOVING IN INSERT
+"delete word under cursor
 map <c-d> ciw
-map <F3> :bnext<CR>
-map <F2> :bprev<CR>
 
-set pastetoggle=<F7>
 "Fix PKGBUILD
-autocmd VimEnter * if @% == 'PKGBUILD' | exe 'setf PKGBUILD' | endif
+"autocmd VimEnter * if @% == 'PKGBUILD' | exe 'setf PKGBUILD' | endif
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
