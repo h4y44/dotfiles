@@ -1,12 +1,66 @@
-def_key "k"
-  scroll_up
-#
-def_key "j"
-  scroll_down
-
 def_key "-"
-  volume_down
-
+	volume_down
 def_key "="
-  volume_up
+	volume_up
+def_key "space"
+	play_item
+def_key "e"
+	edit_lyrics
 
+# moving {{{ 
+def_key "k"
+	scroll_up
+def_key "j"
+	scroll_down
+def_key "ctrl-e"
+	page_up
+def_key "ctrl-d"
+	page_down
+def_key "e"
+	page_up
+def_key "d"
+	page_down
+def_key "g"
+	move_home
+def_key "G"
+	move_end
+# }}}
+
+# toggle {{{
+def_key "R"
+	toggle_random
+def_key "S"
+	toggle_single
+# }}}
+
+# controling {{{
+def_key "ctrl-j"
+	next
+def_key "ctrl-k"
+	previous
+def_key "J"
+	scroll_down_album
+def_key "K"
+	scroll_up_album
+
+def_key "ctrl-j"
+	scroll_down_album
+def_key "ctrl-k"
+	scroll_up_album
+def_key "N"
+	next_found_item 
+def_key "P"
+	previous_found_item
+def_key "ctrl-q"
+	quit
+def_key "."
+	jump_to_playing_song
+
+# }}}
+
+def_command "q!" [deferred]
+	pause
+	quit
+
+def_command "q" [deferred]
+	quit

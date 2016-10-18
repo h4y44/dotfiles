@@ -1,18 +1,24 @@
+#vim: setf=config
+
 mpd_host = localhost
 mpd_port = 6600
 
-song_columns_list_format = "$L(9)[red]{l} (20)[cyan]{a} (30)[green]{b}$R(20)[yellow]{t}"
+song_columns_list_format = "$L(9)[30]{l} (20)[110]{a} (30)[65]{b}$R(20)[131]{t}"
 now_playing_prefix = "$b"
 playlist_display_mode = "columns" (classic/columns)
 autocenter_mode = "no"
 centered_cursor = "no"
+browser_display_mode = "columns" 
+state_line_color = 236
+state_flags_color = 100
+progressbar_elapsed_color = 173
 #cyclic_scrolling = "no"
 #mouse_list_scroll_whole_page = "no"
 # Bars
 #progressbar_look = "=>"
 #progressbar_look = "─- "
 #progressbar_look = "▒▒░"
-#progressbar_look = "┅┅┄"
+progressbar_look = "┅┅┄"
 #progressbar_look = "─⊙┄"
 #progressbar_look = "─➞─"
 #progressbar_look = "─┅─"
@@ -23,15 +29,16 @@ centered_cursor = "no"
 #progressbar_look = "‒‒‒"
 #progressbar_look = "■◣ "
 #progressbar_look = "◈◆◇"
-progressbar_look = "─╼─"
+#progressbar_look = "─╼─"
 titles_visibility = "no"
 #header_visibility = "no"
 statusbar_visibility = "no"
 
 # Others
+mouse_support = no
 song_window_title_format = "MPD: {%a > }{%t}{ [%b{ Disc %d}]}|{%f}"
-search_engine_display_mode = "columns" (classic/columns)
-follow_now_playing_lyrics = "yes"
+search_engine_display_mode = "columns"
+follow_now_playing_lyrics = yes
 message_delay_time = 2
 external_editor = "/usr/bin/textadeptjit"
 use_console_editor = no
