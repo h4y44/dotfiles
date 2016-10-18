@@ -1,0 +1,74 @@
+URxvt.perl-ext-common: default,clipboard,matcher,resize-font
+
+!############Colors
+! special
+*.foreground:   #a8a19f
+*.background:   #121212
+*.cursorColor:  #a8a19f
+! black
+*.color0:       #1b1918
+*.color8:       #766e6b
+! red
+*.color1:       #b6525b
+*.color9:       #b23f49
+! green
+*.color2:       #62801c
+*.color10:      #5f8700
+! yellow
+*.color3:       #997b44
+*.color11:      #a47849
+! blue
+*.color4:       #477ba4
+*.color12:      #3e6d8d
+! magenta
+*.color5:       #9c70bd
+*.color13:      #7757b1
+! cyan
+*.color6:       #5b988d
+*.color14:      #4d938b
+! white
+*.color7:       #a7a4a3
+*.color15:      #c2c2c2
+
+!###############Behaviors
+Xft.hinting: 1
+*.font: xft:Inconsolata:size=13,xft:Nippon
+!*.font: xft:Inconsolata:size=11,xft:Droid Sans Fallback
+URxvt*termName: screen-256color
+urxvt*realBold: true
+URxvt*skipBuiltinGlyphs: true
+urxvt*cursorBlink: true
+urxvt*pointerBlank: true
+!URxvt.letterSpace: -1
+URxvt.scrollBar: false
+URxvt.jumpScroll: true
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyOutput: false 
+URxvt*scrollTtyKeypress: true
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 1
+URxvt.secondaryWheel: 1
+!URxvt*inheritPixmap:    true
+URxvt.url-launcher:     /usr/bin/firefox
+urxvt*matcher.button:  0
+URxvt.matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+URxvt.matcher.pattern.2:  \\B(/\\S+?):(\\d+)(?=:|$)
+!URxvt.colorUL: #86a2be
+!################Cut and paste options
+URxvt*keysym.Shift-Control-V: perl:clipboard:paste
+URxvt*keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.resize-font.smaller: C-Shift-Down
+URxvt.resize-font.bigger: C-Shift-Up
+URxvt.keysym.M-C-k: command:\033]720;1\007
+URxvt.keysym.M-C-j: command:\033]721;1\007
+
+XTerm*metaSendsEscape: true
+xterm*termName: xterm-256color
+xterm*faceName: Inconsolata:size=13:antialias=true
+xterm*faceNameDoublesize: Nippon
+*VT100.Translations: #override \
+              <Key>BackSpace: string(0x7F)\n\
+              <Key>Delete:    string("\033[3~")\n\
+              <Key>Home:      string("\033[1~")\n\
+              <Key>End:       string("\033[4~")
+*ttyModes: erase ^? 
