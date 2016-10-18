@@ -22,7 +22,7 @@
     format = "<b>%s</b>\n%b"
  
     # Sort messages by urgency
-    sort = yes
+    sort = no
  
     # Show how many messages are currently hidden (because of geometry)
     indicate_hidden = yes
@@ -117,15 +117,9 @@
     # automatically after a crash.
     startup_notification = false
  
-    # dmenu path
-    dmenu = /usr/bin/dmenu -p dunst:
- 
-    # browser for opening urls in context menu
-    browser = /usr/bin/firefox -new-tab
- 
 [frame]
     width = 2
-    color = "#555555"
+    color = "#111111"
  
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -148,20 +142,20 @@
  
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the '#' and following  would be interpreted as a comment.
-    background = "#D3D3A4"
-    foreground = "#404040"
-    timeout = 5
+    # Otherwise the '#' and following  would be interpreted as a comment 
+	background = "#404040"
+    foreground = "#C1C1C1"
+    timeout = 8
  
 [urgency_normal]
-    background = "#D3D3A4"
-    foreground = "#404040"
-    timeout = 7
+    background = "#5A5A5A"
+    foreground = "#C1C1C1"
+    timeout = 10
  
 [urgency_critical]
-    background = "#D8E0E3"
-    foreground = "#412F27"
-    timeout = 10
+	background = "#A90000"
+    foreground = "#E2A8AC"
+    timeout = 100
  
  
 # Every section that isn't one of the above is interpreted as a rules

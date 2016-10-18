@@ -1,27 +1,48 @@
-set -xU EDITOR 'vim'
-set -xU TERM 'xterm-256color'
-set -xU BROWSER 'google-chrome-stable'
-set -xU GTK_IM_MODULE ibus
-set -xU XMODIFIERS @im ibus
-set -xU QT_IM_MODULE ibus
-set -xU DE "xfce"
-set -xU XDG_CONFIG_DIR '/etc/xdg'
-set -xU QT_STYLE_OVERRIDE gtk
-set -xU NO_AT_BRIDGE 1
+# vim : setf fish
+set -e fish_greeting
+
+set -gx PATH /usr/bin
+set -gx EDITOR 'vim'
+set -gx BROWSER 'firefox'
+set -gx GTK_IM_MODULE ibus
+set -gx XMODIFIERS @im ibus
+set -gx QT_IM_MODULE ibus
+set -gx DE "xfce"
+set -gx XDG_CONFIG_DIR '/etc/xdg'
+set -gx QT_STYLE_OVERRIDE gtk
+set -gx NO_AT_BRIDGE 1
 set -gx _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 set -gx FZF_DEFAULT_OPTS '--color=16'
+set -gx GOPATH '/home/l4/Public/Go/'
+set -gx STARDICT_DATA_DIR '~/.stardict/dic'
+set -gx GUILE_AUTO_COMPILE 0
+#less 
+set -gx LESS_TERMCAP_mb (printf "\e[01;36m")      # begin blinking
+set -gx LESS_TERMCAP_md (printf "\e[01;36m")      # begin bold
+set -gx LESS_TERMCAP_me (printf "\e[0m")          # end mode
+set -gx LESS_TERMCAP_se (printf "\e[0m")          # end standout-mode
+set -gx LESS_TERMCAP_so (printf "\e[07;93m")   # begin standout-mode - info box
+set -gx LESS_TERMCAP_ue (printf "\e[0m")          # end underline
+set -gx LESS_TERMCAP_us (printf "\e[01;32m")      # begin underline
+
 alias gdb "gdb -q "
+alias cck 'cppcheck --enable=warning,performance'
 alias youtube-dl '~/Desktop/bin/youtube-dl'
-alias ips 'bpython'
 alias ll 'ls -lha' 
+alias cdc 'cd -'
 alias fm 'vifm'
-alias vv 'g++ -std=c++14'
-alias edt 'textadeptjit'
+alias news 'newsbeuter -q'
+alias edt 'howl'
 alias pm 'pacman'
+alias mcc 'musl-gcc'
 alias puttb 'nc termbin.com 9999'
 alias getmyip 'wget http://ipinfo.io/ip -qO -'
-alias crc 'crystal build'
-alias getnetspeed '~/Desktop/bin/speedtest'
+alias f 'file'
+
+function def
+	sdcv -c -n $argv | less
+end
+
 #fzf config
 function __fzfcmd
     echo "fzf"

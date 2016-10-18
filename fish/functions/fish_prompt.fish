@@ -3,8 +3,8 @@ function fish_prompt
 	echo 'l4> '
 end
 
-function  fish_right_prompt
-	set_color magenta
+function fish_right_prompt
+	set_color brown
 	echo $PWD
 end
 
@@ -14,4 +14,12 @@ end
 
 function getdirect
     curl -w "%{url_effective}\n" -I -L -s -S $argv -o /dev/null 
+end
+
+function pstream
+    youtube-dl -q -o- $argv | mplayer -cache 4096 -
+end
+
+function gops
+	tr ' ' '\n'
 end
