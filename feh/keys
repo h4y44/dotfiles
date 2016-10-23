@@ -1,0 +1,33 @@
+# menu navigation
+menu_parent h Left
+menu_child  l Right
+menu_down   j Down
+menu_up     k Up
+menu_select C-j Return
+
+toggle_fullscreen f
+toggle_filenames n
+
+zoom_in C-j bracketright
+zoom_out C-k bracketleft
+zoom_default C-backslash
+zoom_fit C-p
+
+next_img d space Right
+prev_img e BackSpace Left
+
+# and image movement
+scroll_up    k
+scroll_down  j
+scroll_left  h
+scroll_right l
+
+scroll_left_page	H
+scroll_right_page	L
+scroll_up_page		K
+scroll_down_page	J
+
+# misc
+toggle_exif			i
+
+close q Q C-q

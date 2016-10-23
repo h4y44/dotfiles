@@ -1,0 +1,34 @@
+# ====================
+# A few default themes
+# ====================
+
+# Show a presentation
+present --full-screen --sort name --hide-pointer
+
+# Booth mode ;-)
+booth --full-screen --hide-pointer --slideshow-delay 20
+
+# Screw xscreensaver, use feh =)
+screensave --recursive --full-screen --randomize --slideshow-delay 10 --hide-pointer
+
+# Different menus
+aqua --menu-bg /usr/share/feh/images/menubg_aqua.png
+sky --menu-bg /usr/share/feh/images/menubg_sky.png
+black --menu-bg /usr/share/feh/images/menubg_black.png
+dark --menu-bg /home/l4/Desktop/222222.png
+
+# Some more examples, used by the feh developer
+
+rfs --full-screen --hide-pointer --auto-zoom --randomize
+fs  --full-screen --hide-pointer --auto-zoom --sort filename
+
+thumb_s  --thumbnails --cache-thumbnails --thumb-width 128 --thumb-height 128 \
+         --limit-width 1024 --sort filename \
+         --fontpath /usr/share/fonts/truetype/ttf-dejavu/ --font DejaVuSans/8
+
+thumb_b  --thumbnails --cache-thumbnails --thumb-width 256 --thumb-height 256 \
+         --limit-width 1024 --sort filename \
+         --fontpath /usr/share/fonts/truetype/ttf-dejavu/ --font DejaVuSans/8
+
+thumb_s_nt --thumbnails --cache-thumbnails --thumb-width 128 --thumb-height 128 \
+           --limit-width 1024 --sort filename --index-name 0
