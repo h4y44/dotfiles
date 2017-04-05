@@ -27,18 +27,14 @@ noremap sh :split<CR>
 noremap spc :set spell<CR>
 
 call plug#begin()
-Plug 'skywind3000/asyncrun.vim'
+Plug 'ap/vim-buftabline'
 call plug#end()
 
-noremap <F9> :call asyncrun#quickfix_toggle(6)<cr>
-noremap <F7> :AsyncRun make<cr> 
-noremap <F11> :AsyncRun make run<cr>
-noremap <F10> :SyntasticToggleMode<cr>
 "MAP ALTKEY FOR SPLIT NAVIGATING
-execute "set <M-h>=\eh"
-execute "set <M-l>=\el"
-execute "set <M-j>=\ej"
-execute "set <M-k>=\ek"
+"execute "set <M-h>=\eh"
+"execute "set <M-l>=\el"
+"execute "set <M-j>=\ej"
+"execute "set <M-k>=\ek"
 noremap <M-h> <c-w>h
 noremap <M-l> <c-w>l
 noremap <M-j> <c-w>j
@@ -67,12 +63,14 @@ set foldmethod=indent
 set foldnestmax=10
 set foldenable
 
+syn on
 colorscheme moonmod
 
-"TREAT LONG LINE AS NORMAL LINE
-map j gj
-map k gk
-map <F5> <NOP>
+""TREAT LONG LINE AS NORMAL LINE
+"no need since `nowrap` is on
+"map j gj
+"map k gk
+"map <F5> <NOP>
 
 "STATUSLINE OPTIONS
 set laststatus=2
@@ -81,7 +79,7 @@ set statusline+=%4*%0.30F
 set statusline+=\ %7*%r%4*%h%w\ %y
 set statusline+=%=
 set statusline+=[%{strlen(&fenc)?&fenc:&enc}]\ 
-set statusline+=%6*[❤\ %{&ff}]\ %2*[%2.c\ ☯\ %l\/%L] 
+set statusline+=%6*[%{&ff}]\ %2*[%2.c\ -\ %l\/%L] 
 
 "TABLINE OPTIONS
 set showtabline=2  " 0, 1 or 2; when to use a tab pages line
@@ -100,10 +98,15 @@ noremap <silent> cci :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<C
 noremap <silent> cco :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 "MOVING IN INSERT MODE
-imap <c-j> <Down>
-imap <c-k> <Up>
-imap <c-l> <Right>
-imap <c-h> <Left>
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+execute "set <M-l>=\el"
+execute "set <M-h>=\eh"
+
+imap <M-j> <Down>
+imap <M-k> <Up>
+imap <M-l> <Right>
+imap <M-h> <Left>
 
 "CLIPBOARD
 set clipboard=unnamed
@@ -112,21 +115,21 @@ execute "set <M-p>=\ep"
 map <M-p> "+p
 vmap <M-c> "+yy
 
-let g:jedi#use_splits_not_buffers = "left"
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#auto_initialization = 1
-let g:jedi#show_call_signatures = 0
-"autocmd FileType python setlocal completeopt-=preview
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 8
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs = 0
-let g:syntastic_enable_highlighting = 0
-let g:syntastic_ocaml_use_ocamlc = 1
-let g:syntastic_c_checkers = 'gcc'
+"let g:jedi#use_splits_not_buffers = "left"
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#auto_initialization = 1
+"let g:jedi#show_call_signatures = 0
+""autocmd FileType python setlocal completeopt-=preview
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_loc_list_height = 8
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_enable_signs = 0
+"let g:syntastic_enable_highlighting = 0
+"let g:syntastic_ocaml_use_ocamlc = 1
+"let g:syntastic_c_checkers = 'gcc'
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
 map <c-n> :NERDTreeToggle<CR>
