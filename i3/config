@@ -1,0 +1,226 @@
+# vim:set ft=i3 et:
+client.focused          #455974 #3B667F #EEEEEC #3465A4
+client.focused_inactive #555753 #555753 #BABDB6 #888A85
+client.unfocused        #555753 #2E3436 #BABDB6 #888A85
+client.urgent           #EF2929 #CC0000 #EEEEEC #EF2929
+set $mod Mod4
+font pango:Sans 0
+force_focus_wrapping yes
+
+#rules
+for_window [class="^.*"] border pixel 2
+for_window [class="feh"] border pixel 3
+for_window [class="XTerm"] border 1pixel
+for_window [class="Zathura"] border 1pixel
+for_window [class="Gthumb"] border 1pixel
+for_window [class="Firefox"] border none, layout tabbed
+for_window [class="Gimp"] border 1pixel
+for_window [class="Nomacs"] border none
+for_window [title="Library"] border 2pixel
+for_window [class="EME"] border 1pixel
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="__TEST__"] floating enable
+
+for_window [class="Thunar"] floating enable
+for_window [class="smplayer"] floating enable
+for_window [class="Audacious"] floating enable
+for_window [class="Engrampa"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="Leafpad"] floating enable
+for_window [class="Textadept"] floating enable
+for_window [class="Gnome-font-viewer"] floating enable
+for_window [class="Arandr"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="XTerm"] floating enable
+for_window [class="Transmission-gtk"] floating enable
+for_window [class="Telegram"] floating enable
+for_window [class="MuPDF"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="Lxappearance"] floating enable
+for_window [class="Lxtask"] floating enable
+for_window [title="Library"] floating enable
+for_window [title="Private$"] floating enable
+
+for_window [class="teeworlds"] fullscreen enable
+
+#gaps
+workspace 1 gaps inner 2
+workspace 1 gaps outer 1
+workspace 2 gaps inner 6
+workspace 2 gaps outer 6
+workspace 5 gaps inner 2
+workspace 5 gaps outer 1
+workspace 6 gaps inner 6
+workspace 6 gaps outer 6
+
+#moving floating windows
+mode "moving" {
+    bindsym $mod+Tab focus right
+    bindsym k move up 4px
+    bindsym h move left 6px
+    bindsym j move down 4px
+    bindsym l move right 6px
+    bindsym Up move up 20px
+    bindsym Down move down 20px
+    bindsym Left move left 20px
+    bindsym Right move right 20px
+    bindsym space mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+m focus floating; mode "moving"
+
+mode "gaps" {
+    bindsym k gaps inner current minus 5
+    bindsym j gaps inner current plus 5
+    bindsym h gaps outer current plus 5
+    bindsym l gaps outer current minus 5
+    bindsym 0     gaps inner current set 0
+    bindsym space gaps outer current set 0; gaps inner current set 0
+    bindsym Escape mode "default"
+    bindsym space mode "default"
+}
+bindsym $mod+n mode "gaps"
+
+mode "resizing" {
+    bindsym h resize shrink width 2 px or 2 ppt
+    bindsym j resize grow height 2 px or 2 ppt
+    bindsym k resize shrink height 2 px or 2 ppt
+    bindsym l resize grow width 2 px or 2 ppt
+    bindsym Left resize shrink width 2 px or 2 ppt
+    bindsym Down resize grow height 2 px or 2 ppt
+    bindsym Up resize shrink height 2 px or 2 ppt
+    bindsym Right resize grow width 2 px or 2 ppt
+    bindsym space mode "default"
+    bindsym Escape mode "default"
+    bindsym Tab mode "default"
+}
+bindsym $mod+b mode "resizing"
+
+mode "launching" {
+    bindsym f exec --no-startup-id "/usr/bin/firefox"
+    bindsym s exec --no-startup-id "thunar"
+    bindsym u exec --no-startup-id "urxvtc"
+    bindsym Escape mode "default"
+}
+bindsym $mod+comma mode "launching"
+
+#autostart programs
+#exec --no-startup-id "xcompmgr -f -D 10 -I 10 -O 10 2> /dev/null"
+exec --no-startup-id "thunar --daemon > /dev/null 2>&1"
+exec --no-startup-id "urxvtd -q -o -f"
+exec --no-startup-id "/usr/lib/polkit-gnome/gtkpolkit &"
+exec --no-startup-id "~/.fehbg"
+exec --no-startup-id "ibus-daemon -drx"
+exec --no-startup-id "unclutter"
+exec --no-startup-id "dunst&"
+exec --no-startup-id "[ $(pgrep redshift) ] || redshift"
+exec --no-startup-id "numlockx"
+
+focus_follows_mouse no
+floating_modifier $mod
+bindsym $mod+Return exec --no-startup-id urxvtc
+bindsym $mod+Shift+Return exec --no-startup-id "urxvtc -e tmux"
+bindsym $mod+o exec --no-startup-id "urxvtc"
+bindsym $mod+backslash exec --no-startup-id xterm
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+f exec --no-startup-id "j4-dmenu-desktop --display-binary --dmenu='dmenu -i -p Run:'"
+bindsym $mod+Shift+d exec --no-startup-id "~/.config/i3/taskctl > ~/.config/i3/log/last.log"
+bindsym $mod+Shift+c exec --no-startup-id "~/.config/i3/networkctl"
+
+bindsym $mod+u [urgent=latest] focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+bindsym $mod+c split h
+bindsym $mod+x split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+i layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+q focus mode_toggle
+bindsym $mod+Shift+s sticky toggle
+
+bindsym $mod+z move scratchpad
+bindsym $mod+a scratchpad show
+bindsym $mod+p exec --no-startup-id "thunar"
+bindsym Print exec "scrot '~/Pictures/S/scrot-%Y-%m-%d.png'"
+bindsym XF86Display exec "arandr"
+bindsym XF86TouchpadToggle exec "~/.config/i3/touchpad"
+bindsym XF86AudioRaiseVolume exec "amixer -q -D pulse sset Master 5%+"
+bindsym XF86AudioLowerVolume exec "amixer -q -D pulse sset Master 5%-"
+bindsym XF86AudioMute exec "amixer -q -D pulse sset Master toggle"
+bindsym $mod+Ctrl+l exec "i3lock -i ~/.config/i3/lock.png"
+
+#MPD
+bindsym XF86AudioPlay exec "mpc toggle -q"
+bindsym XF86AudioNext exec "mpc next -q"
+bindsym XF86AudioPrev exec "mpc prev -q"
+bindsym XF86AudioStop exec "mpc stop -q"
+
+#INPUT METHODS
+bindsym $mod+space exec "ibus engine 'xkb:us::eng'"
+bindsym $mod+g exec "ibus engine 'anthy'"
+bindsym $mod+v exec "ibus engine 'Unikey'"
+
+bindsym $mod+Tab focus left
+bindsym $mod+Shift+Tab focus up
+
+bindsym $mod+Mod1+l workspace next
+bindsym $mod+Mod1+h workspace prev
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 nop
+bindsym $mod+w workspace 5
+bindsym $mod+e workspace 6
+bindsym $mod+r workspace 7
+bindsym $mod+slash workspace 8
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+w move container to workspace 5
+bindsym $mod+Shift+e move container to workspace 6
+bindsym $mod+Shift+r move container to workspace 7
+bindsym $mod+Shift+slash move container to workspace 8
+
+bindsym $mod+Ctrl+r reload
+bindsym $mod+Ctrl+e exec "~/.config/i3/exit_i3"
+
+bar {
+    i3bar_command i3bar
+    status_command i3status
+    position top
+    workspace_buttons yes
+    bindsym button1 nop
+    bindsym button2 exec "mpc -q toggle"
+    bindsym button3 exec "mpc -q next"
+    bindsym button4 workspace 1
+    bindsym button5 workspace 3
+    font pango:"Sans" 8
+    height 16
+    colors {
+        background         #090909
+        focused_workspace  #4c7899 #4c7899 #111111
+        active_workspace   #333333 #333333 #ffffff
+        urgent_workspace   #b81515 #b81515 #ffffff
+    }
+}
+
+bindsym $mod+Ctrl+n bar mode toggle
+bindsym $mod+Ctrl+i bar mode invisible

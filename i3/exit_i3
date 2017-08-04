@@ -1,0 +1,2 @@
+#!/bin/dash 
+zenity --question --text 'Quit i3 ?' && i3-msg exit

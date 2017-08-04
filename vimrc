@@ -27,7 +27,8 @@ noremap sh :split<CR>
 noremap spc :set spell<CR>
 
 call plug#begin()
-Plug 'ap/vim-buftabline'
+"Plug 'ap/vim-buftabline'
+Plug 'hdima/python-syntax'
 call plug#end()
 
 "MAP ALTKEY FOR SPLIT NAVIGATING
@@ -115,11 +116,11 @@ execute "set <M-p>=\ep"
 map <M-p> "+p
 vmap <M-c> "+yy
 
-"let g:jedi#use_splits_not_buffers = "left"
-"let g:jedi#auto_vim_configuration = 0
-"let g:jedi#auto_initialization = 1
-"let g:jedi#show_call_signatures = 0
-""autocmd FileType python setlocal completeopt-=preview
+let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#auto_initialization = 1
+let g:jedi#show_call_signatures = 0
+"autocmd FileType python setlocal completeopt-=preview
 "
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1

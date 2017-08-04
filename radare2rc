@@ -1,0 +1,6 @@
+e scr.color = true
+e dbg.bep   = loader
+e asm.syntax = intel
+eco solarized
+e scr.utf8 = true
+e scr.pager=less -R

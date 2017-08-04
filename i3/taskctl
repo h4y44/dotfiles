@@ -1,0 +1,97 @@
+#!/bin/dash
+# vim:set ft=sh:
+
+_URLHIST="$HOME/.config/i3/log/urlhist"
+_GSHIST="$HOME/.config/i3/log/gshist"
+_DICTHIST="$HOME/.config/i3/log/dicthist"
+
+add_new_folder() {
+	cd ~/Music
+	dir="`find * -follow -type d | dmenu -i -p Add:`"
+
+	if ! [ -z "$dir" ] ; then
+		mpc add "$dir"
+		mpc play
+	fi
+}
+
+search_a_song() {
+	song_name=`mpc playlist | dmenu -i -p Search:`
+	if ! [ -z "$song_name" ]; then
+#ex :Adam Lambert - Never Close Our Eyes
+		result=`echo "$song_name" | sed 's/.*\ -\ //g'`
+		echo $result
+		mpc searchplay "$result"
+	fi
+}
+
+open_url() {
+	q_key=`cat $_URLHIST | dmenu -i -p Url:`
+
+	if grep -q "$q_key" $_URLHIST; then
+		echo "ok"
+	else
+		echo $q_key >> $_URLHIST
+	fi
+
+	if ! [ -z "$q_key" ]; then
+		firefox --new-tab "$q_key"
+	fi
+}
+
+do_ggsearch() {
+	q_key=`cat $_GSHIST | dmenu -i -p Google:`
+	
+	if grep -q "$q_key" $_GSHIST ; then
+		echo "ok"
+	else
+		echo $q_key >> $_GSHIST 
+	fi
+
+	if ! [ -z "$q_key" ]; then
+		firefox --new-tab http://www.google.com.vn/search?q="$q_key"
+	fi
+}
+
+do_dictionary_lookup() {
+	q_key=`cat $_DICTHIST | dmenu -i -p Keyword:`
+	
+	if grep -q "$q_key" $_DICTHIST; then
+		echo "ok"
+	else
+		echo $q_key >> $_DICTHIST
+	fi
+
+	notify-send -u low "`sdcv -u en_vi -n "$q_key" | tail -n +4 | head -30`"
+}
+
+control="m1: add folder\nm2: search\nm3: clear playlist\nw1: google search\nw2: goto url\nu1: take screenshot\ns1: dictionary lookup"
+choose=`printf "$control" | dmenu -i -p Task:`
+case $choose in
+"m1:"*)
+	sleep 0.1
+	add_new_folder
+	;;
+"m2:"*)
+	sleep 0.1
+	search_a_song
+	;;
+"m3:"*)
+	mpc clear
+	;;
+"w1:"*)
+	sleep 0.1
+	do_ggsearch
+	;;
+"w2:"*)
+	sleep 0.1
+	open_url
+	;;
+"u1:"*)
+	sleep 0.5
+	maim -s | xclip -selection clipboard -t image/png
+	;;
+"s1:"*)
+	sleep 0.1
+	do_dictionary_lookup;;
+esac

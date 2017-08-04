@@ -39,8 +39,9 @@ Xft.antialias: 1
 Xft.rgba: rgb
 Xft.dpi: 96
 
-!URxvt*iso14755: False
-*.font: xft:Inconsolata:size=12,xft:HAN NOM A
+!# URxvt
+URxvt*iso14755: False
+URxvt*font: xft:Inconsolata:size=12,xft:HAN NOM A
 !*.font: xft:Monospace:size=9,xft:HAN NOM A
 URxvt*termName: screen-256color
 Urxvt*realBold: true
@@ -67,18 +68,14 @@ URxvt.matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 URxvt.matcher.pattern.2:  \\B(/\\S+?):(\\d+)(?=:|$)
 !URxvt.colorUL: #86a2be
 !################Cut and paste options
-!URxvt*keysym.C-Shift-V: perl:clipboard:paste
-!URxvt*keysym.C-Shift-C: perl:clipboard:copy
 URxvt.keysym.M-C-k: command:\033]720;10\007
 URxvt.keysym.M-C-j: command:\033]721;10\007
 
-XTerm*metaSendsEscape: true
-xterm*termName: xterm-256color
-xterm*faceName: Inconsolata:size=12:antialias=true
-xterm*faceNameDoublesize: "HAN NOM A"
-*VT100.Translations: #override \
-              <Key>BackSpace: string(0x7F)\n\
-              <Key>Delete:    string("\033[3~")\n\
-              <Key>Home:      string("\033[1~")\n\
-              <Key>End:       string("\033[4~")
-*ttyModes: erase ^? 
+!XTerm
+XTerm.vt100.locale: true
+XTerm.vt100.backarrowKey: false
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.saveLines: 4096
+XTerm.vt100.faceName: Inconsolata:size=12:antialias=false
+XTerm.vt100.faceNameDoublesize: HAN NOM A
+XTerm.termName: xterm-256color
