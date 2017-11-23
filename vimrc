@@ -3,7 +3,7 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-"SOME IMPORTANT STUFFS
+"SOME IMPORTANT STUFF
 set number
 set mouse=a
 set ttymouse=xterm2
@@ -27,15 +27,10 @@ noremap sh :split<CR>
 noremap spc :set spell<CR>
 
 call plug#begin()
-"Plug 'ap/vim-buftabline'
-Plug 'hdima/python-syntax'
+Plug 'fatih/vim-go'
 call plug#end()
 
 "MAP ALTKEY FOR SPLIT NAVIGATING
-"execute "set <M-h>=\eh"
-"execute "set <M-l>=\el"
-"execute "set <M-j>=\ej"
-"execute "set <M-k>=\ek"
 noremap <M-h> <c-w>h
 noremap <M-l> <c-w>l
 noremap <M-j> <c-w>j
@@ -71,7 +66,7 @@ colorscheme moonmod
 "no need since `nowrap` is on
 "map j gj
 "map k gk
-"map <F5> <NOP>
+map <F5> <NOP>
 
 "STATUSLINE OPTIONS
 set laststatus=2
@@ -116,23 +111,6 @@ execute "set <M-p>=\ep"
 map <M-p> "+p
 vmap <M-c> "+yy
 
-let g:jedi#use_splits_not_buffers = "left"
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#auto_initialization = 1
-let g:jedi#show_call_signatures = 0
-"autocmd FileType python setlocal completeopt-=preview
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_loc_list_height = 8
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_enable_signs = 0
-"let g:syntastic_enable_highlighting = 0
-"let g:syntastic_ocaml_use_ocamlc = 1
-"let g:syntastic_c_checkers = 'gcc'
-
-let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-o>"
 map <c-n> :NERDTreeToggle<CR>
 map <c-b> :TlistToggle<CR>
-let g:pymode_folding = 0
