@@ -1,20 +1,21 @@
 # vim : setf fish
-set -e fish_greeting
+set fish_greeting
 
+stty -ixon
 set -gx PATH /usr/bin
 set -gx EDITOR 'vim'
 set -gx BROWSER 'firefox'
 set -gx GTK_IM_MODULE ibus
-set -gx XMODIFIERS @im ibus
+set -gx XMODIFIERS "@im=ibus"
 set -gx QT_IM_MODULE ibus
 set -gx DE "xfce"
 set -gx XDG_CONFIG_DIR '/etc/xdg'
-set -gx QT_STYLE_OVERRIDE gtk
+set -gx QT_STYLE_OVERRIDE gtk2
 set -gx NO_AT_BRIDGE 1
 set -gx _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 set -gx FZF_DEFAULT_OPTS '--color=16'
-set -gx GOPATH '/home/l4/Public/Go/'
 set -gx STARDICT_DATA_DIR '~/.stardict/dic'
+set -gx GOPATH '/home/l4/.go'
 set -gx GUILE_AUTO_COMPILE 0
 #less 
 set -gx LESS_TERMCAP_mb (printf "\e[01;36m")      # begin blinking
@@ -26,21 +27,26 @@ set -gx LESS_TERMCAP_ue (printf "\e[0m")          # end underline
 set -gx LESS_TERMCAP_us (printf "\e[01;32m")      # begin underline
 
 alias gdb "gdb -q "
-alias cck 'cppcheck --enable=warning,performance'
-alias youtube-dl '~/Desktop/bin/youtube-dl'
+alias sd "systemctl"
+alias x "startx > /dev/null 2> /dev/null"
+alias wifi "nmcli device wifi"
 alias ll 'ls -lha' 
 alias cdc 'cd -'
 alias fm 'vifm'
+alias ytdl '~/Desktop/bin/youtube-dl -U'
 alias news 'newsbeuter -q'
-alias edt 'howl'
 alias pm 'pacman'
 alias mcc 'musl-gcc'
 alias puttb 'nc termbin.com 9999'
-alias getmyip 'wget http://ipinfo.io/ip -qO -'
+alias getip 'wget http://ipinfo.io/ip -qO -'
 alias f 'file'
 
 function def
 	sdcv -c -n $argv | less
+end
+
+function mm
+	mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$argv"
 end
 
 #fzf config
