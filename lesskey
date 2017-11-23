@@ -1,0 +1,5 @@
+#command
+d forw-scroll
+e back-scroll
+#env
+LESS = -i -q -r -c
