@@ -1,0 +1,13 @@
+[alias]
+	st = status
+	ci = commit -v
+	co = checkout
+	br = branch
+	ps = push
+	lg = log --graph
+
+[user]
+	email = l4.foss@gmail.com
+	name = l4
+[credential]
+	helper = cache --timeout=360000
