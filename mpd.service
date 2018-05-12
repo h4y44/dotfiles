@@ -5,7 +5,7 @@ After=network.target sound.target
 
 [Service]
 User=l4
-Group=user
+Group=users
 Type=notify
 ExecStart=/usr/bin/mpd --no-daemon
 

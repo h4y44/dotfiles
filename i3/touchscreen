@@ -1,12 +1,12 @@
 #!/bin/bash 
 # vim:set ft=sh:
-dev_name="SynPS/2 Synaptics TouchPad"
+dev_name="Melfas LGD AIT Touch Controller"
 state=$(xinput --list-props "${dev_name}" | grep -P 'Device Enabled(.*)\t1')
 
 if [[ -z $state ]]; then
 	xinput --enable "${dev_name}"
-	notify-send 'Touchpad has been enabled!'
+	notify-send 'Touchscreen has been enabled!'
 else
 	xinput --disable "${dev_name}"
-	notify-send 'Touchpad has been disabled!'
+	notify-send 'Touchscreen has been disabled!'
 fi

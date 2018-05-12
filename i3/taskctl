@@ -4,10 +4,11 @@
 _URLHIST="$HOME/.config/i3/log/urlhist"
 _GSHIST="$HOME/.config/i3/log/gshist"
 _DICTHIST="$HOME/.config/i3/log/dicthist"
+_DMENU_OPTS="-i -fn Inconsolata-10"
 
 add_new_folder() {
 	cd ~/Music
-	dir="`find * -follow -type d | dmenu -i -p Add:`"
+	dir="`find * -follow -type d | dmenu ${_DMENU_OPTS} -p Add:`"
 
 	if ! [ -z "$dir" ] ; then
 		mpc add "$dir"
@@ -16,7 +17,7 @@ add_new_folder() {
 }
 
 search_a_song() {
-	song_name=`mpc playlist | dmenu -i -p Search:`
+	song_name=`mpc playlist | dmenu ${_DMENU_OPTS} -p Search:`
 	if ! [ -z "$song_name" ]; then
 #ex :Adam Lambert - Never Close Our Eyes
 		result=`echo "$song_name" | sed 's/.*\ -\ //g'`
@@ -26,7 +27,7 @@ search_a_song() {
 }
 
 open_url() {
-	q_key=`cat $_URLHIST | dmenu -i -p Url:`
+	q_key=`cat $_URLHIST | dmenu ${_DMENU_OPTS} -p Url:`
 
 	if grep -q "$q_key" $_URLHIST; then
 		echo "ok"
@@ -40,7 +41,7 @@ open_url() {
 }
 
 do_ggsearch() {
-	q_key=`cat $_GSHIST | dmenu -i -p Google:`
+	q_key=`cat $_GSHIST | dmenu ${_DMENU_OPTS} -p Google:`
 	
 	if grep -q "$q_key" $_GSHIST ; then
 		echo "ok"
@@ -54,7 +55,7 @@ do_ggsearch() {
 }
 
 do_dictionary_lookup() {
-	q_key=`cat $_DICTHIST | dmenu -i -p Keyword:`
+	q_key=`cat $_DICTHIST | dmenu ${_DMENU_OPTS} -p Keyword:`
 	
 	if grep -q "$q_key" $_DICTHIST; then
 		echo "ok"
@@ -66,7 +67,7 @@ do_dictionary_lookup() {
 }
 
 control="m1: add folder\nm2: search\nm3: clear playlist\nw1: google search\nw2: goto url\nu1: take screenshot\ns1: dictionary lookup"
-choose=`printf "$control" | dmenu -i -p Task:`
+choose=`printf "$control" | dmenu ${_DMENU_OPTS} -p Task:`
 case $choose in
 "m1:"*)
 	sleep 0.1
