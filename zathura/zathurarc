@@ -36,3 +36,5 @@ unmap d
 unmap e
 map d scroll half-down
 map e scroll half-up
+map <C-d> scroll full-down
+map <C-e> scroll full-up

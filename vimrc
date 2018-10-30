@@ -1,17 +1,26 @@
+if has('python3')
+  silent! python3 1
+endif
+
 "CURSOR SHAPES
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
 "SOME IMPORTANT STUFF
-set number
 set mouse=a
 set ttymouse=xterm2
 set ttyscroll=1
+set nocursorcolumn
+set nocursorline
+set incsearch
+"set lazyredraw
+set number
 set hlsearch
 set history=1000
 set smartcase
 set cursorline
+set noeb
 set cc=80
 nmap <c-a> :bd<CR>
 nmap <c-s> :w <CR>
@@ -26,10 +35,6 @@ noremap sv :vsplit<CR>
 noremap sh :split<CR>
 noremap spc :set spell<CR>
 
-call plug#begin()
-Plug 'fatih/vim-go'
-call plug#end()
-
 "MAP ALTKEY FOR SPLIT NAVIGATING
 noremap <M-h> <c-w>h
 noremap <M-l> <c-w>l
@@ -37,13 +42,13 @@ noremap <M-j> <c-w>j
 noremap <M-k> <c-w>k
 
 "TAB & INDENT
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set noexpandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 set listchars=tab:˖\ ,eol:¬ "↲
 set list
-set smarttab
+set nosmarttab
 set autoindent
 set nowrap
 set cindent
@@ -54,7 +59,7 @@ set hidden
 
 "CODE FODING
 
-hi Folded	 ctermbg=232 ctermfg=14
+hi Folded ctermbg=232 ctermfg=14
 set foldmethod=indent
 set foldnestmax=10
 set foldenable
@@ -86,7 +91,7 @@ nmap <c-l> :bnext<CR>
 
 " COMMENTING BLOCKS OF CODE.
 set formatoptions+=r
-autocmd FileType c,cpp				let b:comment_leader = '//'
+autocmd FileType c,cpp,go			let b:comment_leader = '//'
 autocmd FileType sh,python			let b:comment_leader = '#'
 autocmd FileType conf				let b:comment_leader = '#'
 autocmd FileType vim				let b:comment_leader = '"'
@@ -111,6 +116,27 @@ execute "set <M-p>=\ep"
 map <M-p> "+p
 vmap <M-c> "+yy
 
-let g:SuperTabDefaultCompletionType = "<c-o>"
+"===== Plugin stuff ======
+
+call plug#begin()
+Plug 'fatih/vim-go'
+Plug 'vim-scripts/AutoComplPop'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'posva/vim-vue'
+call plug#end()
+
 map <c-n> :NERDTreeToggle<CR>
 map <c-b> :TlistToggle<CR>
+let g:acp_enableAtStartup = 0
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+function! My_TabComplete()
+ let substr = strpart(getline('.'), col('.'))
+ let result = match(substr, '\w\+\(\.\w*\)$')
+ if (result!=-1)
+     return "\<C-X>\<C-U>"
+ else
+     return "\<tab>"
+endfunction
+inoremap <tab> <C-R>=My_TabComplete()<CR>

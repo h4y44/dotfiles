@@ -5,7 +5,6 @@ client.focused          #455974 #3B667F #EEEEEC #3465A4
 client.focused_inactive #555753 #555753 #BABDB6 #888A85
 client.unfocused        #555753 #2E3436 #BABDB6 #888A85
 client.urgent           #EF2929 #CC0000 #EEEEEC #EF2929
-set $mod Mod4
 font pango:Sans 8
 force_focus_wrapping yes
 focus_follows_mouse no
@@ -13,34 +12,48 @@ floating_modifier $mod
 workspace_layout default
 force_display_urgency_hint 1000 ms
 
+set $mod Mod4
+set $WS1 "1:"
+set $WS2 "2:"
+set $WS3 "3:"
+set $WS4 "4:"
+set $WS5 "5:"
+set $WS6 "6:"
+set $WS7 "7:"
+set $WS8 "8:"
+
 ## WORKSPACES ##
-bindsym $mod+1 workspace "1:"
-bindsym $mod+2 workspace "2:"
-bindsym $mod+3 workspace "3:"
-bindsym $mod+4 workspace "4:"
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
 bindsym $mod+5 nop
-bindsym $mod+w workspace "5:"
-bindsym $mod+e workspace "6:"
-bindsym $mod+r workspace "7:"
-bindsym $mod+slash workspace "8:"
+bindsym $mod+w workspace $WS5
+bindsym $mod+e workspace $WS6
+bindsym $mod+r workspace $WS7
+bindsym $mod+slash workspace $WS8
 
-bindsym $mod+Shift+1 move container to workspace "1:"
-bindsym $mod+Shift+2 move container to workspace "2:"
-bindsym $mod+Shift+3 move container to workspace "3:"
-bindsym $mod+Shift+4 move container to workspace "4:"
-bindsym $mod+Shift+w move container to workspace "5:"
-bindsym $mod+Shift+e move container to workspace "6:"
-bindsym $mod+Shift+r move container to workspace "7:"
-bindsym $mod+Shift+slash move container to workspace "8:"
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+w move container to workspace $WS5
+bindsym $mod+Shift+e move container to workspace $WS6
+bindsym $mod+Shift+r move container to workspace $WS7
+bindsym $mod+Shift+slash move container to workspace $WS8
 
-workspace "1:" gaps inner 20
-workspace "1:" gaps outer 10
-workspace "2:" gaps inner 4
-workspace "2:" gaps outer 2
-workspace "5:" gaps inner 20
-workspace "5:" gaps outer 10
-workspace "6:" gaps inner 4
-workspace "6:" gaps outer 2
+workspace $WS1 gaps inner 10
+workspace $WS1 gaps outer 10
+workspace $WS2 gaps inner 6
+workspace $WS2 gaps outer 3
+workspace $WS5 gaps inner 10
+workspace $WS5 gaps outer 10
+workspace $WS6 gaps inner 6
+workspace $WS6 gaps outer 3
+
+## MULTIHEAD ##
+set $monitor0 "eDP1"
+set $monitor1 "HDMI2"
 
 ## RULES ##
 default_border pixel 2
@@ -50,10 +63,10 @@ for_window [class="XTerm"] border pixel 1
 for_window [class="Zathura"] border pixel 1
 for_window [class="Gthumb"] border pixel 1
 for_window [class="Firefox"] border none
+bindsym Ctrl+q nop
 for_window [class="Chromium"] border none
 for_window [class="Gimp"] border pixel 1
 for_window [class="Nomacs"] border none
-for_window [title="Library"] border pixel 2
 
 for_window [title="About Mozilla Firefox"] floating enable
 for_window [window_role="pop-up"] floating enable
@@ -71,21 +84,29 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="XTerm"] floating enable
 for_window [class="Transmission-gtk"] floating enable
 for_window [class="Telegram"] floating enable
-for_window [class="MuPDF"] floating enable
+for_window [class="llpp"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Lxappearance"] floating enable
-for_window [class="Lxtask"] floating enable
 for_window [title="Library"] floating enable
-
+for_window [class="Lxtask"] floating enable
+for_window [class="VirtualBox Manager"] floating enable
 for_window [class="teeworlds"] fullscreen enable
+for_window [class="Wine"] floating enable
+for_window [class="lightdm-gtk-greeter-settings"] floating enable
 
-assign [class="Firefox"] → "3:"
-assign [class="Telegram"] → "6:"
-assign [class="Private Browsing*"] → "8:"
-assign [class="Chromium"] → "7:"
+assign [class="Firefox"] → $WS3
+assign [class="Telegram"] → $WS6
+assign [title=".*\(Private Browsing\).*"] → $WS8
+assign [class="Chromium"] → $WS7
+assign [class="mpv"] → $WS6
+assign [class="libreoffice"] → $WS7
+assign [class="libreoffice-writer"] → $WS7
+
+for_window [class="libreoffice"] move container to workspace $WS7
+for_window [title=".*\(Private Browsing\).*"] move container to workspace $WS8
 
 ## MODES ##
-mode ": moving" {
+mode ":: moving" {
     bindsym $mod+Tab focus right
     bindsym k move up 4px
     bindsym h move left 6px
@@ -98,9 +119,9 @@ mode ": moving" {
     bindsym space mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+m focus floating; mode "moving"
+bindsym $mod+m focus floating; mode ":: moving"
 
-mode ": gaps" {
+mode ">< gaps" {
     bindsym k gaps inner current minus 5
     bindsym j gaps inner current plus 5
     bindsym h gaps outer current plus 5
@@ -110,9 +131,9 @@ mode ": gaps" {
     bindsym Escape mode "default"
     bindsym space mode "default"
 }
-bindsym $mod+n mode "gaps"
+bindsym $mod+n mode ">< gaps"
 
-mode ": resizing" {
+mode "[] resizing" {
     bindsym h resize shrink width 2 px or 2 ppt
     bindsym j resize grow height 2 px or 2 ppt
     bindsym k resize shrink height 2 px or 2 ppt
@@ -125,25 +146,25 @@ mode ": resizing" {
     bindsym Escape mode "default"
     bindsym Tab mode "default"
 }
-bindsym $mod+b mode "resizing"
+bindsym $mod+b mode "[] resizing"
 
-mode ": launching" {
+mode ">> launching" {
     bindsym f exec --no-startup-id "/usr/bin/firefox"
     bindsym t exec --no-startup-id "thunar"
     bindsym u exec --no-startup-id "urxvtc"
     bindsym Escape mode "default"
 }
-bindsym $mod+comma mode "launching"
+bindsym $mod+comma mode ">> launching"
 
 ## KEY BINDINGS ##
 bindsym $mod+Return exec --no-startup-id urxvtc
 bindsym $mod+Shift+Return exec --no-startup-id "urxvtc -e tmux"
-bindsym $mod+o exec --no-startup-id "urxvtc"
+#bindsym $mod+o exec --no-startup-id "urxvtc"
 bindsym $mod+backslash exec --no-startup-id xterm
 bindsym $mod+Shift+q kill
-bindsym $mod+Shift+f exec --no-startup-id "j4-dmenu-desktop --display-binary --dmenu='dmenu -fn Inconsolata-10 -i -p Run:'"
+bindsym $mod+Shift+f exec --no-startup-id "j4-dmenu-desktop --display-binary --dmenu='dmenu -b -fn Inconsolata-10 -i -p Run:'"
 bindsym $mod+Shift+d exec --no-startup-id "~/.config/i3/taskctl > ~/.config/i3/log/last.log"
-bindsym $mod+Shift+c exec --no-startup-id "~/.config/i3/networkctl"
+bindsym $mod+Shift+c exec --no-startup-id "rofi -show window"
 
 bindsym $mod+u [urgent=latest] focus
 bindsym $mod+h focus left
@@ -168,7 +189,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+q focus mode_toggle
 bindsym $mod+Shift+s sticky toggle
 
-bindsym $mod+z move scratchpad
+bindsym $mod+d move scratchpad
 bindsym $mod+a scratchpad show
 bindsym $mod+p exec --no-startup-id "thunar"
 bindsym Print exec "scrot '~/Pictures/S/scrot-%Y-%m-%d.png'"
@@ -191,6 +212,7 @@ bindsym XF86Tools exec "mpc toggle -q"
 bindsym $mod+space exec "ibus engine 'xkb:us::eng'"
 bindsym $mod+g exec "ibus engine 'anthy'"
 bindsym $mod+v exec "ibus engine 'Unikey'"
+bindsym $mod+s exec "ibus engine xkb:se::swe"
 
 bindsym $mod+Tab focus left
 bindsym $mod+Shift+Tab focus up
@@ -203,24 +225,7 @@ bindsym $mod+Ctrl+e exec "~/.config/i3/exit_i3"
 
 ## STATUS BAR ##
 bar {
-    i3bar_command i3bar
-    status_command i3status
-    position top
-    workspace_buttons yes
-    bindsym button1 nop
-    bindsym button2 exec "mpc -q toggle"
-    bindsym button3 exec "mpc -q next"
-    bindsym button4 nop
-    bindsym button5 nop
-    font pango:"FontAwesome" 8
-    strip_workspace_numbers yes
-    height 24
-    colors {
-        background         #090909
-        focused_workspace  #4c7899 #4c7899 #111111
-        active_workspace   #333333 #333333 #ffffff
-        urgent_workspace   #b81515 #b81515 #ffffff
-    }
+    i3bar_command tint2
 }
 
 ## STARTUP ##
@@ -232,4 +237,4 @@ exec --no-startup-id "~/.fehbg"
 exec --no-startup-id "ibus-daemon -drx"
 exec --no-startup-id "dunst&"
 exec --no-startup-id "redshift -o"
-
+exec --no-startup-id tint2

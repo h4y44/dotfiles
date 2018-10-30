@@ -4,7 +4,7 @@
 _URLHIST="$HOME/.config/i3/log/urlhist"
 _GSHIST="$HOME/.config/i3/log/gshist"
 _DICTHIST="$HOME/.config/i3/log/dicthist"
-_DMENU_OPTS="-i -fn Inconsolata-10"
+_DMENU_OPTS="-b -i -fn Inconsolata-10"
 
 add_new_folder() {
 	cd ~/Music
@@ -66,33 +66,25 @@ do_dictionary_lookup() {
 	notify-send -u low "`sdcv -u en_vi -n "$q_key" | tail -n +4 | head -30`"
 }
 
-control="m1: add folder\nm2: search\nm3: clear playlist\nw1: google search\nw2: goto url\nu1: take screenshot\ns1: dictionary lookup"
+control="mpd search\nclear playlist\ngoogle search\ntake screenshot\ndictionary lookup"
 choose=`printf "$control" | dmenu ${_DMENU_OPTS} -p Task:`
 case $choose in
-"m1:"*)
-	sleep 0.1
-	add_new_folder
-	;;
-"m2:"*)
+"mpd"*)
 	sleep 0.1
 	search_a_song
 	;;
-"m3:"*)
+"clear"*)
 	mpc clear
 	;;
-"w1:"*)
+"google"*)
 	sleep 0.1
 	do_ggsearch
 	;;
-"w2:"*)
-	sleep 0.1
-	open_url
-	;;
-"u1:"*)
+"take"*)
 	sleep 0.5
 	maim -s | xclip -selection clipboard -t image/png
 	;;
-"s1:"*)
+"dictionary"*)
 	sleep 0.1
 	do_dictionary_lookup;;
 esac

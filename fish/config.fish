@@ -2,7 +2,7 @@
 set fish_greeting
 
 stty -ixon
-set -gx PATH /usr/bin
+set -gx PATH /usr/bin /home/l4/.local/bin
 set -gx EDITOR 'vim'
 set -gx BROWSER 'firefox'
 set -gx GTK_IM_MODULE ibus
@@ -11,12 +11,15 @@ set -gx QT_IM_MODULE ibus
 set -gx DE "xfce"
 set -gx XDG_CONFIG_DIR '/etc/xdg'
 set -gx QT_STYLE_OVERRIDE gtk2
+set -gx QT_SCALE_FACTOR 1.15
+set -gx QT_AUTO_SCREEN_SCALE_FACTOR 0
 set -gx NO_AT_BRIDGE 1
-set -gx _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+set -gx _SILENT_JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 set -gx FZF_DEFAULT_OPTS '--color=16'
 set -gx STARDICT_DATA_DIR '~/.stardict/dic'
-set -gx GOPATH '/home/l4/.go'
-set -gx GUILE_AUTO_COMPILE 0
+set -gx GOPATH '/home/l4/Projects/GoWS'
+set -gx VAMP_PATH '/home/l4/.vamp/'
+
 #less 
 set -gx LESS_TERMCAP_mb (printf "\e[01;36m")      # begin blinking
 set -gx LESS_TERMCAP_md (printf "\e[01;36m")      # begin bold
@@ -26,20 +29,22 @@ set -gx LESS_TERMCAP_so (printf "\e[07;93m")   # begin standout-mode - info box
 set -gx LESS_TERMCAP_ue (printf "\e[0m")          # end underline
 set -gx LESS_TERMCAP_us (printf "\e[01;32m")      # begin underline
 
+alias _ "sudo"
 alias gdb "gdb -q "
 alias sd "systemctl"
-alias x "startx > /dev/null 2> /dev/null"
-alias wifi "nmcli device wifi"
-alias ll 'ls -lha' 
+alias ll 'ls -lhA' 
+alias ks 'ls'
 alias cdc 'cd -'
 alias fm 'vifm'
-alias ytdl '~/Desktop/bin/youtube-dl -U'
+alias ydl '~/Desktop/bin/youtube-dl -U'
 alias news 'newsbeuter -q'
 alias pm 'pacman'
-alias mcc 'musl-gcc'
 alias puttb 'nc termbin.com 9999'
 alias getip 'wget http://ipinfo.io/ip -qO -'
 alias f 'file'
+alias cm 'connmanctl'
+alias cdu 'ncdu --color dark -rr'
+alias skel 'cp ~/Templates/pwn.py p.py'
 
 function def
 	sdcv -c -n $argv | less
